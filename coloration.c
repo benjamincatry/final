@@ -44,33 +44,24 @@ int b = num_blanche (n) ; // position sur le piano
 //printf("la couleur de la touche à colorier est %d\n",c);
 //printf("la position de la touche à colorier est %d\n",b);
 
-    SDL_Renderer *renderer = NULL ;
+    SDL_Renderer *renderer = NULL ; // Initialisation de l'outil de rendu
 
 
     renderer = SDL_CreateRenderer(window,-1,SDL_RENDERER_SOFTWARE) ;
 if (renderer==NULL) {
         SDL_Log(" ERREUR : renderer SDL > %s\n ", SDL_GetError()) ;
-        exit(EXIT_FAILURE) ;
+        exit(EXIT_FAILURE) ; // si l'outil est mal initialisé on quitte le programme
     }
 
-SDL_SetRenderDrawColor(renderer,255,255,255,SDL_ALPHA_OPAQUE);
+SDL_SetRenderDrawColor(renderer,255,255,255,SDL_ALPHA_OPAQUE); // l'outil de rendu dessinera en (R,V,B,transparence) donc ici en blanc opaque
+        
 
-    /* SDL_RenderDrawLine(renderer,xA,yA,xB,yB)
-    SDL_Rect rectangle;
-    rectangle.x=
-    rectangle.y=
-    rectangle.w = largeur
-    rectangle.h = hauteur
-    SDL_RenderDrawRect(renderer, &rectangle)
-SDL_RenderFillRect(renderer, &rectangle)
-    SDL_RenderDrawPoint(renderer,x,y) */
-
-    SDL_Rect rectangle;
-    rectangle.x= 0;
+    SDL_Rect rectangle; // definiton d'un rectangle sdl ( qui est une structure )
+    rectangle.x= 0; //point de départ du rectangle
     rectangle.y= 0;
-    rectangle.w = 1716;
-    rectangle.h = 225;
-SDL_RenderFillRect(renderer, &rectangle);
+    rectangle.w = 1716; // largeur
+    rectangle.h = 225;  // hauteur
+SDL_RenderFillRect(renderer, &rectangle); // permet de colorier en la couleur de l'outil de rendu l'entièreté du rectangle défini précedemment
 
 SDL_SetRenderDrawColor(renderer,128,128,128,SDL_ALPHA_OPAQUE);
 
@@ -81,10 +72,10 @@ for ( int i=1 ; i<=52;i++) {
 
 
 
-// Coloriage de la touche blanche si elle est enregistré au piano
+// Coloriage de la touche blanche si elle est enregistré au piano ( on la colorie avant les touches noires pour profiter au mieux de l'usage des rectangles )
 if (c==1) {
 
-        SDL_SetRenderDrawColor(renderer,255,192,203,SDL_ALPHA_OPAQUE); // 255, 192, 203 coefficianst RGB du rose.
+        SDL_SetRenderDrawColor(renderer,255,192,203,SDL_ALPHA_OPAQUE); // 255, 192, 203 coefficients RVB du rose.
 
         rectangle.x=b*33; 
         rectangle.y= 0;
@@ -94,6 +85,7 @@ if (c==1) {
         SDL_RenderFillRect(renderer, &rectangle);
 
 }
+        
 
 SDL_SetRenderDrawColor(renderer,0,0,0,SDL_ALPHA_OPAQUE);
 
@@ -127,10 +119,10 @@ SDL_RenderFillRect(renderer, &rectangle);
     
     SDL_Delay(1000) ;
 SDL_RenderPresent(renderer) ;
-    SDL_RenderClear(renderer) ;
+    SDL_RenderClear(renderer) ; //fin de l'utilisation de l'outil de rendu
 if (SDL_RenderClear(renderer) !=0 ) {
         SDL_Log(" ERREUR : renderclear SDL > %s\n ", SDL_GetError()) ;
-        exit(EXIT_FAILURE) ;
+        exit(EXIT_FAILURE) ; //on quitte le programmme si l'action n'a pas été faite correctement
     }
 
 
