@@ -159,18 +159,18 @@ int main(int argc, char *argv[])
 
     /*-------------------------inititiation du coloriage------------------------------*/
 
-    SDL_Window *window = NULL ;
+    SDL_Window *window = NULL ; // initialisation fenêtre
 
     SDL_Init(SDL_INIT_VIDEO) ;
     if ( SDL_Init(SDL_INIT_VIDEO) !=0 ) {
-        SDL_Log(" ERREUR : Initialisation SDL > %s\n ", SDL_GetError()) ;
-        exit(EXIT_FAILURE) ;
+        SDL_Log(" ERREUR : Initialisation SDL > %s\n ", SDL_GetError()) ; 
+        exit(EXIT_FAILURE) ; // on quitte le programme si la video est mal initialisée
     }
     
-window = SDL_CreateWindow(" Piano SDL ",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED, 1716,225,0) ; // 1617 = 49 *33
+window = SDL_CreateWindow(" Piano SDL ",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED, 1716,225,0) ; // Création d'une fenetre de longueur 1716 et de hauteur 225 centrée sur l'écran
 if (window==NULL) {
         SDL_Log( "ERREUR : window > %s\n ", SDL_GetError()) ;
-        exit(EXIT_FAILURE) ;
+        exit(EXIT_FAILURE) ; // si la fenetre ne s'est pas créée on quitte le programme 
     }
 
 
